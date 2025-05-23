@@ -656,5 +656,35 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c9",
+    image: "images/products/smtv-vengence-cover.jpg",
+    name: "Shin Megami Tensei V - Vengence",
+    rating: {
+      stars: 5,
+      count: 10
+    },
+    priceCents: 4590,
+    keywords: [
+      "games",
+      "rpg",
+      "playstation 5"
+    ]
+  },
+  {
+    id: "e43638ce-6aa0-4b85-b27f-e1d07eb632c9",
+    image: "images/products/lego-creator-3em1-super-robo.jpg",
+    name: "31124 LEGO® Creator 3em1 Super Robô; Kit de Construção (159 peças)",
+    rating: {
+      stars: 4.5,
+      count: 8
+    },
+    priceCents: 1550,
+    keywords: [
+      "toys",
+      "lego",
+      "children"
+    ]
   }
 ];
