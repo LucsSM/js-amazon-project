@@ -41,12 +41,12 @@ products.forEach((product) => {
 
       <div class="product-spacer"></div>
 
-      <div class="added-to-cart">
+      <div class="added-to-cart js-added-message-${product.id}">
         <img src="images/icons/checkmark.png">
         Added
       </div>
 
-      <button class="add-to-cart-button button-primary js-add-to-cart"
+      <button class="add-to-cart-button button-primary js-add-to-cart js-added-message"
       data-product-id="${product.id}">
         Add to Cart
       </button>
@@ -56,13 +56,30 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+
 document.querySelectorAll('.js-add-to-cart')
 .forEach((button) => {
+  // Create and id to use in closure
+  let isMessageShownId;
+  
   button.addEventListener('click', () => {
     const { productId } = button.dataset;
     const productSelector = document.querySelector(`.js-quantity-selector-${productId}`);
     const quantity = Number(productSelector.value);
-    
+    const addedMessage = document.querySelector(`.js-added-message-${productId}`);
+    addedMessage.classList.add('show-added-message');
+
+    // check if the closure variable has the timeout id in it
+    if(isMessageShownId) {
+      clearTimeout(isMessageShownId);
+    };
+
+    // run the timeout in a variable 
+    const showMessageId = setTimeout(() => addedMessage.classList.remove('show-added-message'), 2000);;
+
+    // save the timeout in the closure variable. The next time the button is pressed, it will contain the timeout and clear it in the if clause check. 
+    isMessageShownId = showMessageId;
+
     let matchingItem;
     
     cart.forEach((item) => {
