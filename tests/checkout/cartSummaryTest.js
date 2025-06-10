@@ -1,5 +1,6 @@
 import {renderCartSummary} from '../../scripts/chekout/cartSummary.js';
 import {loadFromStorage, cart} from '../../data/cart.js';
+import {formatCurrency} from '../../scripts/utils/money.js';
 
 describe('TEST SUITE - renderCartSummary', () => {
     const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
@@ -31,6 +32,10 @@ describe('TEST SUITE - renderCartSummary', () => {
         loadFromStorage();
 
         renderCartSummary();
+    });
+
+    afterEach(() => {
+        document.querySelector('.js-test-container').innerHTML = '';
     })
 
     it('displays the cart', () => {
@@ -39,14 +44,30 @@ describe('TEST SUITE - renderCartSummary', () => {
         ).toEqual(2);
 
         expect(
+            document.querySelector(`.js-product-name-${productId1}`).innerText
+        ).toContain('Black and Gray Athletic Cotton Socks - 6 Pairs');
+
+        expect(
             document.querySelector(`.js-product-quantity-${productId1}`).innerText
         ).toContain('Quantity: 2');
+
+        expect(
+            document.querySelector(`.js-product-price-${productId1}`).innerText
+        ).toContain(`$${formatCurrency(1090)}`);
+
+        expect(
+            document.querySelector(`.js-product-name-${productId2}`).innerText
+        ).toContain('Intermediate Size Basketball');
 
         expect(
             document.querySelector(`.js-product-quantity-${productId2}`).innerText
         ).toContain('Quantity: 1');
 
-        document.querySelector('.js-test-container').innerHTML = '';
+        console.log(document.querySelector(`.product-price`))
+
+        expect(
+            document.querySelector(`.js-product-price-${productId2}`).innerText
+        ).toContain(`$${formatCurrency(2095)}`);
     });
 
     it('removes a product', ()=> {
@@ -66,7 +87,5 @@ describe('TEST SUITE - renderCartSummary', () => {
 
         expect(cart.length).toEqual(1);
         expect(cart[0].productId).toEqual(productId2);
-
-        document.querySelector('.js-test-container').innerHTML = '';
     });
 });
