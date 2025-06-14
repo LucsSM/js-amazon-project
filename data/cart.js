@@ -1,3 +1,5 @@
+import {checkDeliveryOption} from "./deliveryOptions.js";
+
 export let cart;
 
 loadFromStorage();
@@ -69,6 +71,10 @@ export function updateProductQuantity(productId, newQuantity) {
 }
 
 export function updateDeliveryOption(productId, deliveryOptionId) {
+
+    if(!checkDeliveryOption(deliveryOptionId)) {
+        return;
+    }
     let matchingItem;
         
     cart.forEach((cartItem) => {
