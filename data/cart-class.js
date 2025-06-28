@@ -111,6 +111,3 @@ class Cart {
 
 const generalCart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');;
-
-console.log(generalCart);
-console.log(businessCart);
