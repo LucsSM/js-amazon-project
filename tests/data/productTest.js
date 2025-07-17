@@ -1,7 +1,13 @@
-import {getProduct} from "../../data/products.js";
+import {getProduct, loadProducts} from "../../data/products.js";
 
 describe('TEST SUITE - getProduct', () => {
     
+    beforeAll((done) => {
+        loadProducts(() => {
+            done();
+        });
+    });
+
     it('gets a product from the cart', () => {
         let product = getProduct('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
         
