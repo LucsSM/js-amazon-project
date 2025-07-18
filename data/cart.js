@@ -100,3 +100,16 @@ export function calculateCartQuantity() {
 
     return cartQuantity;
 }
+
+export function loadCart(fun) {
+    const xml = new XMLHttpRequest();
+    
+    xml.addEventListener('load', () => {
+        console.log(xml.response);
+        fun();
+    });
+    
+    xml.open('Get', 'https://supersimplebackend.dev/cart');
+    xml.send();
+
+};
