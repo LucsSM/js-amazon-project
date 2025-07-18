@@ -101,7 +101,17 @@ export function calculateCartQuantity() {
     return cartQuantity;
 }
 
+export function loadCartFetch() {
+    const promise = fetch('https://supersimplebackend.dev/cart')
+    .then(() => {
+        console.log('load cart');
+    })
+
+    return promise;
+}
+
 export function loadCart(fun) {
+
     const xml = new XMLHttpRequest();
     
     xml.addEventListener('load', () => {
