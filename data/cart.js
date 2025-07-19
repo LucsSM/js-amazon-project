@@ -111,7 +111,6 @@ export function loadCartFetch() {
 }
 
 export function loadCart(fun) {
-
     const xml = new XMLHttpRequest();
     
     xml.addEventListener('load', () => {
@@ -119,7 +118,6 @@ export function loadCart(fun) {
         fun();
     });
     
-    xml.open('Get', 'https://supersimplebackend.dev/cart');
+    xml.open('GET', 'https://supersimplebackend.dev/cart');
     xml.send();
-
 };
