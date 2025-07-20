@@ -77,30 +77,27 @@ class Appliance extends Product {
 
 export let products = [];
 
-export function loadProductsFetch() {
-    const promise = fetch('https://supersimplebackend.dev/products')
-    .then((response) => {
-        return response.json();
-    })
-    .then((productsData) => {
-        products = productsData.map((productDetails) => {
-            if(productDetails.type === "clothing") {
-                return new Clothing(productDetails);    
-            }
+export async function loadProductsFetch() {
+    const response = await fetch('https://supersimplebackend.dev/products');
+    const productsData = await response.json();
 
-            if(productDetails.type === "appliance") {
-                return new Appliance(productDetails);    
-            }
-            return new Product(productDetails);
-        });
+    products = productsData.map((productDetails) => {
+        if(productDetails.type === "clothing") {
+            return new Clothing(productDetails);    
+        }
+
+        if(productDetails.type === "appliance") {
+            return new Appliance(productDetails);    
+        }
+        return new Product(productDetails);
+    });
         
-        console.log('load products');
-    })
+    console.log('load products');
     // .catch(() => {
     //         console.log('Unexpected error has occured. Try again later.');
     //     });
 
-    return promise;
+    return products;
 };
 
 export function loadProducts(fun) {
@@ -129,6 +126,34 @@ export function loadProducts(fun) {
     xml.open('Get', 'https://supersimplebackend.dev/products');
     xml.send();
 };
+
+/*
+    function loadProductsFetch() {
+        const promise = fetch('https://supersimplebackend.dev/products')
+        .then((response) => {
+            return response.json();
+        })
+        .then((productsData) => {
+            products = productsData.map((productDetails) => {
+                if(productDetails.type === "clothing") {
+                    return new Clothing(productDetails);    
+                }
+
+                if(productDetails.type === "appliance") {
+                    return new Appliance(productDetails);    
+                }
+                return new Product(productDetails);
+            });
+            
+            console.log('load products');
+        })
+        // .catch(() => {
+        //         console.log('Unexpected error has occured. Try again later.');
+        //     });
+
+        return promise;
+};
+*/
 
 /*
 export const products = [

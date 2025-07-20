@@ -101,13 +101,12 @@ export function calculateCartQuantity() {
     return cartQuantity;
 }
 
-export function loadCartFetch() {
-    const promise = fetch('https://supersimplebackend.dev/cart')
-    .then(() => {
-        console.log('load cart');
-    })
+export async function loadCartFetch() {
+    const response = await fetch('https://supersimplebackend.dev/cart')
+    const cart = await response.text();
 
-    return promise;
+    console.log(cart);
+    // return cart;
 }
 
 export function loadCart(fun) {
