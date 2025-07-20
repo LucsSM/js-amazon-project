@@ -64,20 +64,8 @@ function renderProductsGrid() {
     
     document.querySelector('.js-products-grid').innerHTML = productsHTML;
     updateCartQuantity();
-};
 
-function updateCartQuantity() {
-    let cartQuantity = calculateCartQuantity();
-
-    if (cartQuantity === 0) {
-        cartQuantity = '';    
-    } else {
-        document.querySelector('.js-cart-quantity')
-        .innerHTML = cartQuantity;
-    }
-}
-
-document.querySelectorAll('.js-add-to-cart')
+    document.querySelectorAll('.js-add-to-cart')
 .forEach((button) => {
   // Create and id to use in closure
     let isMessageShownId;
@@ -88,6 +76,7 @@ document.querySelectorAll('.js-add-to-cart')
     const quantity = Number(productSelector.value);
     const addedMessage = document.querySelector(`.js-added-message-${productId}`);
     addedMessage.classList.add('show-added-message');
+    console.log('clicked');
 
     // check if the closure variable has the timeout id in it
     if(isMessageShownId) {
@@ -104,3 +93,16 @@ document.querySelectorAll('.js-add-to-cart')
     updateCartQuantity();
     });
 });
+};
+
+function updateCartQuantity() {
+    let cartQuantity = calculateCartQuantity();
+
+    if (cartQuantity === 0) {
+        cartQuantity = '';    
+    } else {
+        document.querySelector('.js-cart-quantity')
+        .innerHTML = cartQuantity;
+    }
+}
+
