@@ -7,7 +7,7 @@ import {cart,
 import {getProduct} from "../../data/products.js";
 import {formatCurrency} from "../utils/money.js";
 import {deliveryOptions, getDeliveryOption, calculateDeliveryDate} from "../../data/deliveryOptions.js";
-import {renderOrderSummary} from "./orderSummary.js";
+import {renderPaymentSummary} from "./paymentSummary.js";
 import {renderCheckoutHeader} from "./checkoutHeader.js";
 
 export function renderCartSummary() {
@@ -73,7 +73,7 @@ export function renderCartSummary() {
             deleteProduct(productId);
             renderCheckoutHeader();
             renderCartSummary();
-            renderOrderSummary();
+            renderPaymentSummary();
 
         });
     });
@@ -101,7 +101,7 @@ export function renderCartSummary() {
                     deleteProduct(productId);
                     renderCartSummary();
                     renderCheckoutHeader();
-                    renderOrderSummary();    
+                    renderPaymentSummary();    
                 }
             } else if(productNewQuantity < 0 || productNewQuantity > 100) {
                 alert('quantity has do be from 0 to 100')
@@ -109,7 +109,7 @@ export function renderCartSummary() {
                 updateProductQuantity(productId, productNewQuantity);
                 renderCartSummary();
                 renderCheckoutHeader();
-                renderOrderSummary();
+                renderPaymentSummary();
             };
         });
     });
@@ -119,7 +119,7 @@ export function renderCartSummary() {
             const {productId, deliveryOptionId} = option.dataset;
             updateDeliveryOption(productId, deliveryOptionId);
             renderCartSummary();
-            renderOrderSummary();
+            renderPaymentSummary();
         });
     });
 
