@@ -1,5 +1,6 @@
 import {loadFromStorage} from '../../data/cart.js';
 import {renderOrderSummary} from "../../scripts/chekout/orderSummary.js";
+import {products, loadProductsFetch} from '../../data/products.js';
 
 describe('TEST SUITE - renderOrderSummary', () => {
     const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
@@ -27,6 +28,8 @@ describe('TEST SUITE - renderOrderSummary', () => {
             ]);
         });
         loadFromStorage();
+
+        const products = loadProductsFetch();
 
         renderOrderSummary();
     });
