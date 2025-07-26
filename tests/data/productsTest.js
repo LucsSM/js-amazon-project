@@ -1,6 +1,10 @@
-import {getProduct, Product, Clothing, Appliance} from "../../data/products.js";
+import {loadProductsFetch, getProduct, Product, Clothing, Appliance} from "../../data/products.js";
 
 describe('TEST SUITE - getProduct', () => {
+
+    beforeAll(async () => {
+            await loadProductsFetch();
+        });
     
     it('gets a product from the cart', () => {
         let product = getProduct('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
