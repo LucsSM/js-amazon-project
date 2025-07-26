@@ -81,7 +81,7 @@ export function renderCartSummary() {
     document.querySelectorAll('.js-update-product').forEach((link) => {
         link.addEventListener('click', () => {
             const productId = link.dataset.productId;
-            const itemContainer = document.querySelector(`.cart-item-${productId}`);
+            const itemContainer = document.querySelector(`.js-cart-item-${productId}`);
             itemContainer.classList.add('is-editing-quantity');
         });
     });
@@ -90,7 +90,7 @@ export function renderCartSummary() {
         link.addEventListener('click', () => {
             const productId = link.dataset.productId;
             
-            const cartProduct = document.querySelector(`.cart-item-${productId}`);
+            const cartProduct = document.querySelector(`.js-cart-item-${productId}`);
             cartProduct.classList.remove('is-editing-quantity');
             
             const updateInput = document.querySelector(`.js-quantity-input-${productId}`);
