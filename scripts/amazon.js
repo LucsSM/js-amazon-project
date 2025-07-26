@@ -1,8 +1,9 @@
 import {addToCart, calculateCartQuantity} from '../data/cart.js';
 import {products, loadProducts} from '../data/products.js';
 
-
-loadProducts(renderProductsGrid);
+if(document.querySelector('.js-products-grid')) {
+    loadProducts(renderProductsGrid);
+};
 
 function renderProductsGrid() {
     let productsHTML = '';
@@ -66,36 +67,36 @@ function renderProductsGrid() {
     updateCartQuantity();
 
     document.querySelectorAll('.js-add-to-cart')
-.forEach((button) => {
-  // Create and id to use in closure
-    let isMessageShownId;
-    
-    button.addEventListener('click', () => {
-    const { productId } = button.dataset;
-    const productSelector = document.querySelector(`.js-quantity-selector-${productId}`);
-    const quantity = Number(productSelector.value);
-    const addedMessage = document.querySelector(`.js-added-message-${productId}`);
-    addedMessage.classList.add('show-added-message');
-    console.log('clicked');
+    .forEach((button) => {
+    // Create and id to use in closure
+        let isMessageShownId;
+        
+        button.addEventListener('click', () => {
+        const { productId } = button.dataset;
+        const productSelector = document.querySelector(`.js-quantity-selector-${productId}`);
+        const quantity = Number(productSelector.value);
+        const addedMessage = document.querySelector(`.js-added-message-${productId}`);
+        addedMessage.classList.add('show-added-message');
+        console.log('clicked');
 
-    // check if the closure variable has the timeout id in it
-    if(isMessageShownId) {
-        clearTimeout(isMessageShownId);
-    };
+        // check if the closure variable has the timeout id in it
+        if(isMessageShownId) {
+            clearTimeout(isMessageShownId);
+        };
 
-    // run the timeout in a variable 
-    const showMessageId = setTimeout(() => addedMessage.classList.remove('show-added-message'), 2000);;
+        // run the timeout in a variable 
+        const showMessageId = setTimeout(() => addedMessage.classList.remove('show-added-message'), 2000);;
 
-    // save the timeout in the closure variable. The next time the button is pressed, it will contain the timeout and clear it in the if clause check. 
-    isMessageShownId = showMessageId;
+        // save the timeout in the closure variable. The next time the button is pressed, it will contain the timeout and clear it in the if clause check. 
+        isMessageShownId = showMessageId;
 
-    addToCart(productId, quantity);
-    updateCartQuantity();
+        addToCart(productId, quantity);
+        updateCartQuantity();
+        });
     });
-});
 };
 
-function updateCartQuantity() {
+export function updateCartQuantity() {
     let cartQuantity = calculateCartQuantity();
 
     if (cartQuantity === 0) {
@@ -104,5 +105,4 @@ function updateCartQuantity() {
         document.querySelector('.js-cart-quantity')
         .innerHTML = cartQuantity;
     }
-}
-
+};
