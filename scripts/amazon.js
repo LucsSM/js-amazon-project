@@ -1,11 +1,11 @@
 import {addToCart, calculateCartQuantity} from '../data/cart.js';
 import {products, loadProducts} from '../data/products.js';
 
-if(document.querySelector('.js-products-grid')) {
-    loadProducts(renderProductsGrid);
-};
+// if(document.querySelector('.js-products-grid')) {
+//     loadProducts(renderProductsGrid);
+// };
 
-function renderProductsGrid() {
+export function renderProductsGrid() {
     let productsHTML = '';
     
     products.forEach((product) => {
