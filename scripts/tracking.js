@@ -21,6 +21,12 @@ async function renderTracking() {
         }
     });
 
+    const currentTime = dayjs();
+    const orderTime = dayjs(order.orderTime);
+    const deliveryTime = dayjs(productOrderDetails.estimatedDeliveryTime);
+    const deliveryProgress = ((currentTime - orderTime) / (deliveryTime - orderTime)) * 100;
+    console.log(deliveryProgress);
+
     const trackingHTML = `
         <div class="order-tracking">
             <a class="back-to-orders-link link-primary" href="orders.html">
@@ -28,7 +34,7 @@ async function renderTracking() {
             </a>
 
             <div class="delivery-date">
-                Arriving on ${dayjs(productOrderDetails.estimatedDeliveryTime).format('dddd, MMMM D')}
+                Arriving on ${deliveryTime.format('dddd, MMMM D')}
             </div>
 
             <div class="product-info">
@@ -42,26 +48,42 @@ async function renderTracking() {
             <img class="product-image" src="${product.image}">
 
             <div class="progress-labels-container">
-                <div class="progress-label">
+                <div class="preparing-label">
                     Preparing
                 </div>
-                <div class="progress-label current-status">
+                <div class="shipped-label">
                     Shipped
                 </div>
-                <div class="progress-label">
+                <div class="delivered-label">
                     Delivered
                 </div>
             </div>
 
             <div class="progress-bar-container">
-                <div class="progress-bar"></div>
+                <div class="progress-bar" style="width:${deliveryProgress}%"></div>
             </div>
         </div>
     `
 
     document.querySelector('.js-main').innerHTML = trackingHTML;
+    highlightStatus(deliveryProgress);
 
     console.log('load tracking')
+}
+
+function highlightStatus(deliveryProgress) {
+
+    if(deliveryProgress < 50) {
+        document.querySelector('.preparing-label').classList.add('current-status');
+    }
+
+    if(deliveryProgress > 50 && deliveryProgress < 100) {
+        document.querySelector('.shipped-label').classList.add('current-status');
+    }
+
+    if(deliveryProgress >= 100) {
+        document.querySelector('.delivered-label').classList.add('current-status');
+    }
 }
 
 updateCartQuantity();
