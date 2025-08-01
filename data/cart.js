@@ -120,3 +120,8 @@ export function loadCart(fun) {
     xml.open('GET', 'https://supersimplebackend.dev/cart');
     xml.send();
 };
+
+export function resetCart() {
+    cart = [];
+    saveToStorage();
+}
