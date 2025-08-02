@@ -21,11 +21,13 @@ async function renderTracking() {
         }
     });
 
-    const currentTime = dayjs();
+    const today = dayjs();
     const orderTime = dayjs(order.orderTime);
     const deliveryTime = dayjs(productOrderDetails.estimatedDeliveryTime);
-    const deliveryProgress = ((currentTime - orderTime) / (deliveryTime - orderTime)) * 100;
+    const deliveryProgress = ((today - orderTime) / (deliveryTime - orderTime)) * 100;
     console.log(deliveryProgress);
+
+    const deliveryStatus = today < deliveryTime ? 'Arriving on' : 'Delivered on';
 
     const trackingHTML = `
         <div class="order-tracking">
@@ -34,7 +36,7 @@ async function renderTracking() {
             </a>
 
             <div class="delivery-date">
-                Arriving on ${deliveryTime.format('dddd, MMMM D')}
+                ${deliveryStatus} ${deliveryTime.format('dddd, MMMM D')}
             </div>
 
             <div class="product-info">
