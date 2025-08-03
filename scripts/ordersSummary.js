@@ -44,6 +44,7 @@ async function renderOrderSummary() {
 
     document.querySelector('.js-orders-grid').innerHTML = orderHTML;
 
+    // add the product to the cart
     document.querySelectorAll('.js-buy-again').forEach((button) => {
 
         let isMessageShownId;

@@ -9,6 +9,7 @@ export function renderProductsGrid() {
     
     let filteredProducts = products;
 
+    // check the search bar and renders the products that fit the search
     if(search) {  
         search = search.toLowerCase();
         
@@ -84,6 +85,7 @@ export function renderProductsGrid() {
     document.querySelector('.js-products-grid').innerHTML = productsHTML;
     updateCartQuantity();
 
+    // adds the product to the cart
     document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {
     // Create and id to use in closure
@@ -114,11 +116,13 @@ export function renderProductsGrid() {
     });
 };
 
+// search feature
 document.querySelector('.js-search-button').addEventListener('click', () => {
     const searchValue = document.querySelector('.js-search-bar').value;
     window.location.href = `amazon.html?search=${searchValue}`;
 })
 
+// allows Enter key to be used in the search bar
 document.querySelector('.js-search-bar').addEventListener('keydown', (event) => {
     if(event.key === 'Enter') {
         const searchValue = document.querySelector('.js-search-bar').value;

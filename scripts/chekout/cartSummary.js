@@ -67,6 +67,7 @@ export function renderCartSummary() {
     cartContainertHTML.innerHTML = cartProductHTML;
     renderCheckoutHeader();
 
+    // delete a product from cart
     document.querySelectorAll('.js-delete-product').forEach((link) => {
         link.addEventListener('click', () => {
             const productId = link.dataset.productId;
@@ -78,6 +79,7 @@ export function renderCartSummary() {
         });
     });
 
+    // allows to change the quantity of a product
     document.querySelectorAll('.js-update-product').forEach((link) => {
         link.addEventListener('click', () => {
             const productId = link.dataset.productId;
@@ -86,6 +88,7 @@ export function renderCartSummary() {
         });
     });
 
+    // change the quantity of a product
     document.querySelectorAll('.save-quantity-link').forEach((link) => {
         link.addEventListener('click', () => {
             const productId = link.dataset.productId;
@@ -114,6 +117,7 @@ export function renderCartSummary() {
         });
     });
 
+    // changes the delivery opdtion of a product
     document.querySelectorAll('.js-delivery-option').forEach((option) => {
         option.addEventListener('click', () => {
             const {productId, deliveryOptionId} = option.dataset;

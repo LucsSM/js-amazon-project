@@ -59,6 +59,7 @@ export function renderPaymentSummary() {
     const paymentSummaryHTML = document.querySelector('.js-payment-summary');
     paymentSummaryHTML.innerHTML = html;
     
+    // confirms and place the order
     document.querySelector('.js-place-order-button').addEventListener('click', async () => {
         try {const response = await fetch('https://supersimplebackend.dev/orders',
                 {
