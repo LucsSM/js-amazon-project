@@ -35,8 +35,10 @@ dynamic tracking page with tracking bar and status highlight;
 <br>
 <br>
 <img src="images/preview/trackingPage-1.jpg" alt="website preview">
+<br>
+<br>
 
-#Resources
+# Resources
 <ul>
   <li>
     <a href="https://www.youtube.com/watch?v=EerdGm-ehJQ" alt=JavaScript Tutorial Full Course - Beginner to Pro">JavaScript Tutorial Full Course - Beginner to Pro</a>    
